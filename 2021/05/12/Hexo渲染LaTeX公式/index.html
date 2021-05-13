@@ -26,7 +26,7 @@
 <meta property="og:description" content="渲染需要用到mathjax和kramedmathjax：数学公式渲染引擎kramed：Hexo的markdown渲染引擎，用于替换不支持mathjax的hexo默认渲染引擎marked 一、Hexo添加mathjax 卸载hexo-math npm uninstall hexo-math —save 安装mathjax npm install hexo-renderer-mathjax —save">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-12T05:45:34.000Z">
-<meta property="article:modified_time" content="2021-05-12T06:03:40.266Z">
+<meta property="article:modified_time" content="2021-05-12T06:04:19.083Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Hexo blog">
 <meta name="twitter:card" content="summary">
@@ -349,7 +349,7 @@
 <li>卸载marked引擎 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure></li>
 <li>安装kramed引擎 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure></li>
 <li>修改引擎bug<br> 修改文件：/node_modules\kramed\lib\rules\inline.js中的escape和em两行： <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span></span><br><span class="line"><span class="built_in">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span>,</span><br></pre></td></tr></table></figure>
- 这一步是在原基础上取消了对,{,}的转义(escape)。<br> 同时把第20行的em变量也要做相应的修改。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  em: &#x2F;^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)&#x2F;,</span><br><span class="line">  em: &#x2F;^\*((?:\*\*|[\s\S])+?)\*(?!\*)&#x2F;,</span><br></pre></td></tr></table></figure></li>
+ 这一步是在原基础上取消了对,{,}的转义(escape)。<br> 同时把第20行的em变量也要做相应的修改。 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span></span><br><span class="line">  em: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure></li>
 <li>重新启动hexo<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></li>
 </ol>
 
